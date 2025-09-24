@@ -1,8 +1,8 @@
 # sort package
 def sort(width, height, length, mass):
     # validate input values
-    if width < 0 or height < 0 or length < 0 or mass < 0:
-        raise ValueError("Dimensions and mass must be non-negative")
+    if width <= 0 or height <= 0 or length <= 0 or mass <= 0:
+        raise ValueError("Dimensions and mass must be non-negative and non-zero")
 
     # check bulky
     volume = width * height * length
@@ -25,4 +25,11 @@ print(sort(200,10,10,5))    # SPECIAL BULKY
 print(sort(10,10,10,25))    # SPECIAL HEAVY
 print(sort(200,10,10,25))   # REJECTED BULKY HEAVY
 print(sort(100,100,100,10)) # SPECIAL BULKY
-print(sort(-1,-1,-1,-1))    # ERROR
+try:
+    print(sort(-1,-1,-1,-1))    # ERROR
+except ValueError as e:
+    print("ERROR:", str(e))
+try:
+    print(sort(0,0,0,0))        # ERROR
+except ValueError as e:
+    print("ERROR:", str(e))
